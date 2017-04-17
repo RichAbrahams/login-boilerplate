@@ -4,7 +4,7 @@
  *
  */
 
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import { Row, Col, Well } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';

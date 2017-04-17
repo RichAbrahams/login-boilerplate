@@ -6,11 +6,10 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-import { createStructuredSelector } from 'reselect';
-import * as actions from './actions';
 import { Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
+import Helmet from 'react-helmet';
+import * as actions from './actions';
 
 export class SignOut extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 

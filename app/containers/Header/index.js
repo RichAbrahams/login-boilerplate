@@ -33,7 +33,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
 }
 
 Header.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  username: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
