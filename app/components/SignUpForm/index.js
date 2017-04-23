@@ -12,8 +12,21 @@ const validate = (values) => {
   if (!values.get('username')) {
     errors.username = 'Required';
   }
+  if (!values.get('city')) {
+    errors.city = 'Required';
+  }
+  if (!values.get('state')) {
+    errors.state = 'Required';
+  }
   if (!values.get('password')) {
     errors.password = 'Required';
+  }
+  if (!values.get('confirm')) {
+    errors.confirm = 'Required';
+  }
+  if (values.get('confirm') !== values.get('password')) {
+    errors.confirm = 'Passwords do not match';
+    errors.password = 'Passwords do not match';
   }
   if (!values.get('email')) {
     errors.email = 'Required';
@@ -38,7 +51,10 @@ function SignUpForm({ error, handleSubmit, pristine, reset, submitting}) {
     <form onSubmit={handleSubmit}>
       <Field name="username" component={renderTextField} label="Username" placeholder="Enter username" type="text" />
       <Field name="email" component={renderTextField} label="Email" placeholder="Enter email" type="text" />
+      <Field name="city" component={renderTextField} label="City" placeholder="Enter city" type="text" />
+      <Field name="state" component={renderTextField} label="State" placeholder="Enter state" type="text" />
       <Field name="password" component={renderTextField} label="Password" placeholder="Enter password" type="password" />
+      <Field name="confirm" component={renderTextField} label="Confirm Password" placeholder="Enter password" type="password" />
       <div>
         <ButtonToolbar>
           <Button bsStyle="primary" type="submit" disabled={submitting}>Submit</Button>

@@ -6,8 +6,9 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { SIGN_IN } from './constants';
 import { signInSuccess } from './actions';
 
-function setAuthToken(token) {
-  localStorage.setItem('authToken', JSON.stringify(token));
+function setAuthToken(data) {
+  const token = data.token;
+  localStorage.setItem('token', JSON.stringify(token));
 }
 
 export function* getSignIn(action) {

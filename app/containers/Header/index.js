@@ -17,16 +17,13 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
   render() {
     return (
       <Row>
-        <Navbar inverse>
+        <Navbar>
           <Nav onSelect={this.handleSelect} pullRight>
             { !this.props.username && <NavItem eventKey="/signin">Sign In</NavItem>}
             { !this.props.username && <NavItem eventKey="/signup">Sign Up</NavItem>}
-            { this.props.username && <NavItem eventKey="/signout">Sign Out</NavItem>}
+            { this.props.username && <NavItem eventKey="/signout">Welcome {this.props.username} - Sign Out</NavItem>}
           </Nav>
         </Navbar>
-        <ImageWrapper>
-          <Image src={Banner} />
-        </ImageWrapper>
       </Row>
     );
   }

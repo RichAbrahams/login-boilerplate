@@ -2,6 +2,7 @@ import {
   SIGN_IN,
   SIGN_IN_SUCCESS,
   SIGN_OUT,
+  RETRIEVE_USER,
 } from './constants';
 
 export function signIn(payload) {
@@ -23,4 +24,5 @@ export function signOut() {
     type: SIGN_OUT,
   };
 }
+
 

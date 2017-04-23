@@ -26,6 +26,11 @@ router.post('/signin', authorizePassword, (req, res) => {
 
 router.post('/signup', createUser);
 
+router.get('/retrieveuser', authorizeToken, (req, res) => {
+  console.log(req.user);
+  res.json(req.user[0]);
+});
+
 router.use((err, req, res, next) => {
   console.error(err.stack); // eslint-disable-line
 
