@@ -14,6 +14,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
     browserHistory.push(selectedKey);
   }
 
+
   render() {
     return (
       <Row>
@@ -21,7 +22,10 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
           <Nav onSelect={this.handleSelect} pullRight>
             { !this.props.username && <NavItem eventKey="/signin">Sign In</NavItem>}
             { !this.props.username && <NavItem eventKey="/signup">Sign Up</NavItem>}
-            { this.props.username && <NavItem eventKey="/signout">Welcome {this.props.username} - Sign Out</NavItem>}
+            { this.props.username && <NavItem eventKey="/">All Books</NavItem>}
+            { this.props.username && <NavItem eventKey="/">My Books</NavItem>}
+            { this.props.username && <NavItem eventKey="/profile">Profile</NavItem>}
+            { this.props.username && <NavItem eventKey="/signout">Sign Out</NavItem>}
           </Nav>
         </Navbar>
       </Row>
@@ -34,7 +38,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  username: selectors.username(),
+  username: selectors.selectUsername(),
 });
 
 function mapDispatchToProps(dispatch) {

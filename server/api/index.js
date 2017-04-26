@@ -1,39 +1,42 @@
-const createUser = require('./createUser');
-const signin = require('./signin');
 const express = require('express');
-const router = express.Router();
 const bodyParser = require('body-parser');
-const verifyToken = require('./verifyToken');
-const verifyPassword = require('./verifyPassword');
 const passport = require('passport');
+const verifyToken = require('./verifyToken'); // eslint-disable-line
+const verifyPassword = require('./verifyPassword'); // eslint-disable-line
+const verifyResetToken = require('./verifyResetToken'); // eslint-disable-line
+const createUser = require('./createUser');
+const signIn = require('./signIn');
+const retrieveUser = require('./retrieveUser');
+const resetPassword = require('./resetPassword');
+const router = express.Router();
+const updateProfile = require('./updateProfile');
+const updatePassword = require('./updatePassword');
+const sendResetEmail = require('./sendResetEmail');
 
-const authorizeToken = passport.authenticate('jwt', { session: false });
-const authorizePassword = passport.authenticate('local', { session: false });
+const authorizeToken = passport.authenticate('verifyToken', { session: false });
+const authorizePassword = passport.authenticate('verifyPassword', { session: false });
+const authorizeResetToken = passport.authenticate('verifyResetToken', { session: false });
 
 router.use(bodyParser.json({
   type: '*/*',
 }));
 
-router.get('/test', authorizeToken, (req, res) => {
-  console.log(req.user);
-  res.json({ success: true });
-});
-
-router.post('/signin', authorizePassword, (req, res) => {
-  console.log('signin hit');
-  res.json({ success: true, user: req.user });
-});
+router.post('/signin', authorizePassword, signIn);
 
 router.post('/signup', createUser);
 
-router.get('/retrieveuser', authorizeToken, (req, res) => {
-  console.log(req.user);
-  res.json(req.user[0]);
-});
+router.post('/updateprofile', authorizeToken, updateProfile);
+
+router.post('/updatepassword', authorizeToken, updatePassword);
+
+router.post('/sendresetemail', sendResetEmail);
+
+router.post('/resetpassword', authorizeResetToken, resetPassword);
+
+router.get('/retrieveuser', authorizeToken, retrieveUser);
 
 router.use((err, req, res, next) => {
   console.error(err.stack); // eslint-disable-line
-
   res.status(500).json({ success: false, error: { _error: 'server error, please retry later' } });
 });
 

@@ -40,6 +40,7 @@ export class SignIn extends React.PureComponent { // eslint-disable-line react/p
             <SignInForm {...this.props} onSubmit={(payload) => this.handleSubmit(payload)} />
           </Well>
           <P><Link to="/signup">Need an account?</Link></P>
+          <P><Link to="/sendreset">Forgotten password?</Link></P>
         </Col>
       </Row>
     );

@@ -17,6 +17,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'toastr/build/toastr.min.css';
 // Import root app
 import App from 'containers/App';
 import axios from 'axios';
@@ -52,14 +53,18 @@ const initialState = {};
 const store = configureStore(initialState, browserHistory);
 
 const token = localStorage.getItem('token');
+console.log('token check', token);
 if (token) {
+  console.log('token found', token);
   const parsedToken = JSON.parse(token);
   const config = { headers: { authorization: parsedToken } };
   axios.get('/api/retrieveuser', config)
     .then((result) => {
-      store.dispatch(signInSuccess({ username: result.data.username, token: parsedToken }))
+      store.dispatch(signInSuccess(Object.assign({}, result.data.user, { token: parsedToken })));
     })
-    .catch((err) => localStorage.removeItem('token'));
+    .catch(() => localStorage.removeItem('token'));
+} else {
+  console.log('token not found');
 }
 
 // Sync history and store, as the react-router-redux reducer

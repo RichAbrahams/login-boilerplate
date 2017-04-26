@@ -1,4 +1,4 @@
-const secret = require('../../config').secret;
+const secret = require('../../config').resetLinkSecret;
 const jwt = require('jwt-simple');
 
 module.exports = (username) => {

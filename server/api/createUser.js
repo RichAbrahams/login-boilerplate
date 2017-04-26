@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt-nodejs');
 const hash = require('./hashPassword');
 const generateToken = require('./generateToken');
 

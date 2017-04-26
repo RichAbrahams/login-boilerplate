@@ -17,19 +17,17 @@ import {
   SIGN_OUT,
 } from '../SignOut/constants';
 
-const initialState = fromJS({
-  username: null,
-  token: null,
-});
+const initialState = fromJS({});
 
 function headerReducer(state = initialState, action) {
   switch (action.type) {
     case SIGN_IN_SUCCESS:
-      return state.set('username', action.payload.username).set('token', action.payload.token);
+      console.log(action.payload);
+      return state.merge(action.payload);
     case SIGN_UP_SUCCESS:
-      return state.set('username', action.payload.username).set('token', action.payload.token);
+      return state.merge(action.payload);
     case SIGN_OUT:
-      return state.set('username', null).set('token', null);
+      return fromJS({});
     default:
       return state;
   }

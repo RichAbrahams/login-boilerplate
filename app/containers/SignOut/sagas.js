@@ -2,7 +2,7 @@ import { take, call } from 'redux-saga/effects';
 import { SIGN_OUT } from '../SignOut/constants';
 
 function removeAuthToken() {
-  localStorage.removeItem('authToken');
+  localStorage.removeItem('token');
 }
 
 export function* signOut(action) {

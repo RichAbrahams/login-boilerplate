@@ -21,7 +21,7 @@ export function* getSignIn(action) {
     yield resolve();
     yield browserHistory.push('/');
   } catch (err) {
-    reject(new SubmissionError({ _error: 'username or email incorrect' }));
+    reject(new SubmissionError({ _error: 'email or password incorrect' }));
   }
 }
 

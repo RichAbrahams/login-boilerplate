@@ -88,6 +88,66 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/profile',
+      name: 'profile',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Profile/reducer'),
+          import('containers/Profile/sagas'),
+          import('containers/Profile'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('profile', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/sendreset',
+      name: 'sendReset',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/SendReset/reducer'),
+          import('containers/SendReset/sagas'),
+          import('containers/SendReset'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('sendReset', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/resetpassword',
+      name: 'resetPassword',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/ResetPassword/reducer'),
+          import('containers/ResetPassword/sagas'),
+          import('containers/ResetPassword'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('resetPassword', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

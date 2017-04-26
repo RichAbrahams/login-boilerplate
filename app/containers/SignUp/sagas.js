@@ -13,7 +13,6 @@ function setAuthToken(data) {
 
 export function* getSignUp(action) {
   const { data, resolve, reject } = action.payload;
-  console.log('saga', data.toJS());
   try {
     const requestURL = '/api/signup';
     const response = yield axios.post(requestURL, data.toJS());
@@ -22,7 +21,6 @@ export function* getSignUp(action) {
     yield resolve();
     yield browserHistory.push('/');
   } catch (err) {
-    yield console.log('saga error', err);
     reject(new SubmissionError({ _error: 'username or email already in use' }));
   }
 }
