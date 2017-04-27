@@ -18,7 +18,9 @@ const api = require('./api/index');
 
 let db;
 
-const dbUrl = 'mongodb://localhost:27017/bookClub';
+// const dbUrl = 'mongodb://localhost:27017/bookClub';
+
+const dbUrl = 'mongodb://testuserasd842:testuserasd842@ds123371.mlab.com:23371/login-boilerplate';
 
 mongodb
   .MongoClient
